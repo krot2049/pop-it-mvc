@@ -1,0 +1,14 @@
+{
+    "name": "crow/pop-it-mvc",
+    "description": "Library management system",
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Src\\": "core/Src"
+        },
+        "classmap": [
+            "app"
+        ]
+    }
+}

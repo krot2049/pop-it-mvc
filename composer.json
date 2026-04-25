@@ -2,7 +2,10 @@
     "name": "crow/pop-it-mvc",
     "description": "Library management system",
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "illuminate/database": "13.x-dev",
+        "illuminate/events": "13.x-dev"
+    },
     "autoload": {
         "psr-4": {
             "Src\\": "core/Src"

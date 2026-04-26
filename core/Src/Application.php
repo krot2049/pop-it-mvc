@@ -17,7 +17,7 @@ class Application
     public function __construct(Settings $settings)
     {
         $this->settings = $settings;
-        $this->route = new Route();
+        $this->route = Route::single()->setPrefix($this->settings->getRootPath());
         $this->dbManager = new Capsule();
         $this->auth = new $this->settings->app['auth'];
         $this->dbRun();
@@ -44,7 +44,6 @@ class Application
 
     public function run(): void
     {
-        $this->route->setPrefix($this->settings->getRootPath());
         $this->route->start();
     }
 }

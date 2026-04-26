@@ -17,7 +17,7 @@ class Request
 
     public function all(): array
     {
-        return $this->body + $this->files;
+        return $this->body;
     }
 
     public function set($field, $value): void

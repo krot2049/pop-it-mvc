@@ -12,7 +12,10 @@
             "Src\\": "core/Src"
         },
         "classmap": [
-            "app"
+            "app",
+            "app/Middlewares",
+            "app/Model",
+            "app/Controller"
         ]
     }
 }

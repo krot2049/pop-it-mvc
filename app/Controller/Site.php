@@ -1,16 +1,40 @@
 <?php
 namespace Controller;
+
+use Model\User;
+use Src\Auth\Auth;
+use Src\Request;
 use Src\View;
 
 class Site
 {
-    public function index(): string
+    public function home(Request $request): string
     {
-        return (new View())->render('site.hello', ['message' => 'Библиотека — главная']);
+        return new View('site.home');
     }
 
-    public function hello(): string
+    public function signup(Request $request): string
     {
-        return new View('site.hello', ['message' => 'Hello from library!']);
+        if ($request->method === 'POST' && User::create($request->all())) {
+            app()->route->redirect('/login');
+        }
+        return new View('site.signup');
+    }
+
+    public function login(Request $request): string
+    {
+        if ($request->method === 'GET') {
+            return new View('site.login');
+        }
+        if (Auth::attempt($request->all())) {
+            app()->route->redirect('/home');
+        }
+        return new View('site.login', ['message' => 'Неверный логин или пароль']);
+    }
+
+    public function logout(): void
+    {
+        Auth::logout();
+        app()->route->redirect('/login');
     }
 }

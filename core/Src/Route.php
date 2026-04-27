@@ -85,7 +85,7 @@ class Route
             case Dispatcher::FOUND:
                 $handler = $routeInfo[1];
                 $vars = array_values($routeInfo[2]);
-                $vars[] = Middleware::single()->runMiddlewares($httpMethod, $uri);
+                $vars[] = Middleware::single()->go($httpMethod, $uri, new Request());
                 call_user_func([new $handler[0], $handler[1]], ...$vars);
                 break;
         }

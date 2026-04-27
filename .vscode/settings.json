@@ -1,0 +1,6 @@
+{
+    "editor.fontSize": 14,
+    "intelephense.environment.includePaths": [
+        "/var/www/html/pop-it-mvc/vendor"
+    ]
+}

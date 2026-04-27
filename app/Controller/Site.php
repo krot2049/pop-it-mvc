@@ -14,12 +14,29 @@ class Site
     }
 
     public function signup(Request $request): string
-    {
-        if ($request->method === 'POST' && User::create($request->all())) {
+{
+    if ($request->method === 'POST') {
+        $validator = new \Src\Validator\Validator($request->all(), [
+            'name'     => ['required'],
+            'login'    => ['required', 'unique:users,login'],
+            'password' => ['required']
+        ], [
+            'required' => 'Поле :field пусто',
+            'unique'   => 'Поле :field должно быть уникальным'
+        ]);
+
+        if ($validator->fails()) {
+            return new View('site.signup', [
+                'message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)
+            ]);
+        }
+
+        if (User::create($request->all())) {
             app()->route->redirect('/login');
         }
-        return new View('site.signup');
     }
+    return new View('site.signup');
+}
 
     public function login(Request $request): string
     {

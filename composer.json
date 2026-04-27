@@ -15,7 +15,8 @@
             "app",
             "app/Middlewares",
             "app/Model",
-            "app/Controller"
+            "app/Controller",
+            "app/Validators"
         ]
     }
 }
